@@ -1,0 +1,1194 @@
+[
+  {
+    "id": "gmail",
+    "name": "Gmail",
+    "hex": "EA4335",
+    "category": "email",
+    "keywords": [
+      "google",
+      "email",
+      "mail"
+    ],
+    "website": "mail.google.com",
+    "hasGlyph": true,
+    "fullColor": true
+  },
+  {
+    "id": "protonmail",
+    "name": "Proton Mail",
+    "hex": "6D4AFF",
+    "category": "email",
+    "keywords": [
+      "proton",
+      "email",
+      "mail"
+    ],
+    "website": "proton.me",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "icloud",
+    "name": "iCloud",
+    "hex": "3693F3",
+    "category": "email",
+    "keywords": [
+      "apple",
+      "email",
+      "mail"
+    ],
+    "website": "icloud.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "yahoo",
+    "name": "Yahoo",
+    "hex": "6001D2",
+    "category": "email",
+    "keywords": [
+      "email",
+      "mail"
+    ],
+    "website": "mail.yahoo.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "zoho",
+    "name": "Zoho",
+    "hex": "E42527",
+    "category": "email",
+    "keywords": [
+      "email",
+      "mail"
+    ],
+    "website": "zoho.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "facebook",
+    "name": "Facebook",
+    "hex": "0866FF",
+    "category": "social",
+    "keywords": [
+      "meta",
+      "fb"
+    ],
+    "website": "facebook.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "instagram",
+    "name": "Instagram",
+    "hex": "FF0069",
+    "category": "social",
+    "keywords": [
+      "meta",
+      "ig"
+    ],
+    "website": "instagram.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "x",
+    "name": "X",
+    "hex": "000000",
+    "category": "social",
+    "keywords": [
+      "twitter"
+    ],
+    "website": "x.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "threads",
+    "name": "Threads",
+    "hex": "000000",
+    "category": "social",
+    "keywords": [
+      "meta"
+    ],
+    "website": "threads.net",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "tiktok",
+    "name": "TikTok",
+    "hex": "000000",
+    "category": "social",
+    "keywords": [
+      "bytedance"
+    ],
+    "website": "tiktok.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "snapchat",
+    "name": "Snapchat",
+    "hex": "FFFC00",
+    "category": "social",
+    "keywords": [
+      "snap"
+    ],
+    "website": "snapchat.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "hex": "FF4500",
+    "category": "social",
+    "keywords": [],
+    "website": "reddit.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "pinterest",
+    "name": "Pinterest",
+    "hex": "BD081C",
+    "category": "social",
+    "keywords": [],
+    "website": "pinterest.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "hex": "5865F2",
+    "category": "social",
+    "keywords": [
+      "chat"
+    ],
+    "website": "discord.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "telegram",
+    "name": "Telegram",
+    "hex": "26A5E4",
+    "category": "social",
+    "keywords": [
+      "chat",
+      "messaging"
+    ],
+    "website": "telegram.org",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp",
+    "hex": "25D366",
+    "category": "social",
+    "keywords": [
+      "meta",
+      "chat",
+      "messaging"
+    ],
+    "website": "whatsapp.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "signal",
+    "name": "Signal",
+    "hex": "3B45FD",
+    "category": "social",
+    "keywords": [
+      "chat",
+      "messaging"
+    ],
+    "website": "signal.org",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "messenger",
+    "name": "Messenger",
+    "hex": "0866FF",
+    "category": "social",
+    "keywords": [
+      "meta",
+      "chat"
+    ],
+    "website": "messenger.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "bluesky",
+    "name": "Bluesky",
+    "hex": "1185FE",
+    "category": "social",
+    "keywords": [],
+    "website": "bsky.app",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "mastodon",
+    "name": "Mastodon",
+    "hex": "6364FF",
+    "category": "social",
+    "keywords": [],
+    "website": "mastodon.social",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "tumblr",
+    "name": "Tumblr",
+    "hex": "36465D",
+    "category": "social",
+    "keywords": [],
+    "website": "tumblr.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "viber",
+    "name": "Viber",
+    "hex": "7360F2",
+    "category": "social",
+    "keywords": [
+      "chat",
+      "messaging"
+    ],
+    "website": "viber.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "line",
+    "name": "LINE",
+    "hex": "00C300",
+    "category": "social",
+    "keywords": [
+      "chat",
+      "messaging"
+    ],
+    "website": "line.me",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "hex": "E50914",
+    "category": "entertainment",
+    "keywords": [
+      "streaming",
+      "movies",
+      "tv"
+    ],
+    "website": "netflix.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "youtube",
+    "name": "YouTube",
+    "hex": "FF0000",
+    "category": "entertainment",
+    "keywords": [
+      "google",
+      "video"
+    ],
+    "website": "youtube.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "spotify",
+    "name": "Spotify",
+    "hex": "1ED760",
+    "category": "entertainment",
+    "keywords": [
+      "music"
+    ],
+    "website": "spotify.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "twitch",
+    "name": "Twitch",
+    "hex": "9146FF",
+    "category": "entertainment",
+    "keywords": [
+      "streaming"
+    ],
+    "website": "twitch.tv",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "hbo",
+    "name": "HBO",
+    "hex": "000000",
+    "category": "entertainment",
+    "keywords": [
+      "max",
+      "streaming"
+    ],
+    "website": "max.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "primevideo",
+    "name": "Prime Video",
+    "hex": "00A8E1",
+    "category": "entertainment",
+    "keywords": [
+      "amazon",
+      "streaming"
+    ],
+    "website": "primevideo.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "applemusic",
+    "name": "Apple Music",
+    "hex": "FA243C",
+    "category": "entertainment",
+    "keywords": [
+      "music"
+    ],
+    "website": "music.apple.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "appletv",
+    "name": "Apple TV",
+    "hex": "000000",
+    "category": "entertainment",
+    "keywords": [
+      "streaming"
+    ],
+    "website": "tv.apple.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "soundcloud",
+    "name": "SoundCloud",
+    "hex": "FF5500",
+    "category": "entertainment",
+    "keywords": [
+      "music"
+    ],
+    "website": "soundcloud.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "crunchyroll",
+    "name": "Crunchyroll",
+    "hex": "FF5E00",
+    "category": "entertainment",
+    "keywords": [
+      "anime",
+      "streaming"
+    ],
+    "website": "crunchyroll.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "hulu",
+    "name": "Hulu",
+    "hex": "1CE783",
+    "category": "entertainment",
+    "keywords": [
+      "streaming"
+    ],
+    "website": "hulu.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "paramountplus",
+    "name": "Paramount+",
+    "hex": "0064FF",
+    "category": "entertainment",
+    "keywords": [
+      "streaming"
+    ],
+    "website": "paramountplus.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "hex": "002991",
+    "category": "finance",
+    "keywords": [
+      "payments"
+    ],
+    "website": "paypal.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "hex": "635BFF",
+    "category": "finance",
+    "keywords": [
+      "payments"
+    ],
+    "website": "stripe.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "wise",
+    "name": "Wise",
+    "hex": "9FE870",
+    "category": "finance",
+    "keywords": [
+      "transfer"
+    ],
+    "website": "wise.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "revolut",
+    "name": "Revolut",
+    "hex": "191C1F",
+    "category": "finance",
+    "keywords": [
+      "bank"
+    ],
+    "website": "revolut.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "venmo",
+    "name": "Venmo",
+    "hex": "008CFF",
+    "category": "finance",
+    "keywords": [
+      "payments"
+    ],
+    "website": "venmo.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "cashapp",
+    "name": "Cash App",
+    "hex": "00C244",
+    "category": "finance",
+    "keywords": [
+      "payments"
+    ],
+    "website": "cash.app",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "visa",
+    "name": "Visa",
+    "hex": "1A1F71",
+    "category": "finance",
+    "keywords": [
+      "card"
+    ],
+    "website": "visa.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "mastercard",
+    "name": "MasterCard",
+    "hex": "EB001B",
+    "category": "finance",
+    "keywords": [
+      "card"
+    ],
+    "website": "mastercard.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "americanexpress",
+    "name": "American Express",
+    "hex": "2E77BC",
+    "category": "finance",
+    "keywords": [
+      "amex",
+      "card"
+    ],
+    "website": "americanexpress.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "coinbase",
+    "name": "Coinbase",
+    "hex": "0052FF",
+    "category": "finance",
+    "keywords": [
+      "crypto"
+    ],
+    "website": "coinbase.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "gcash",
+    "name": "GCash",
+    "hex": "007DFE",
+    "category": "finance",
+    "keywords": [
+      "wallet",
+      "payments"
+    ],
+    "website": "gcash.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "hex": "FF9900",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "amazon.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "ebay",
+    "name": "eBay",
+    "hex": "E53238",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "ebay.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "etsy",
+    "name": "Etsy",
+    "hex": "F16521",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "etsy.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "shopify",
+    "name": "Shopify",
+    "hex": "7AB55C",
+    "category": "shopping",
+    "keywords": [
+      "shop",
+      "store"
+    ],
+    "website": "shopify.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "shopee",
+    "name": "Shopee",
+    "hex": "EE4D2D",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "shopee.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "lazada",
+    "name": "Lazada",
+    "hex": "0F146D",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "lazada.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "aliexpress",
+    "name": "AliExpress",
+    "hex": "FF4747",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "aliexpress.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "ikea",
+    "name": "IKEA",
+    "hex": "0058A3",
+    "category": "shopping",
+    "keywords": [
+      "shop",
+      "furniture"
+    ],
+    "website": "ikea.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "temu",
+    "name": "Temu",
+    "hex": "FB7701",
+    "category": "shopping",
+    "keywords": [
+      "shop"
+    ],
+    "website": "temu.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "slack",
+    "name": "Slack",
+    "hex": "4A154B",
+    "category": "work",
+    "keywords": [
+      "chat"
+    ],
+    "website": "slack.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "hex": "000000",
+    "category": "work",
+    "keywords": [
+      "notes",
+      "docs"
+    ],
+    "website": "notion.so",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "zoom",
+    "name": "Zoom",
+    "hex": "0B5CFF",
+    "category": "work",
+    "keywords": [
+      "video",
+      "meetings"
+    ],
+    "website": "zoom.us",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "google",
+    "name": "Google",
+    "hex": "4285F4",
+    "category": "work",
+    "keywords": [
+      "gmail",
+      "drive"
+    ],
+    "website": "accounts.google.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "googledrive",
+    "name": "Google Drive",
+    "hex": "4285F4",
+    "category": "work",
+    "keywords": [
+      "files",
+      "storage"
+    ],
+    "website": "drive.google.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "dropbox",
+    "name": "Dropbox",
+    "hex": "0061FF",
+    "category": "work",
+    "keywords": [
+      "files",
+      "storage"
+    ],
+    "website": "dropbox.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "trello",
+    "name": "Trello",
+    "hex": "0052CC",
+    "category": "work",
+    "keywords": [
+      "tasks"
+    ],
+    "website": "trello.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "asana",
+    "name": "Asana",
+    "hex": "F06A6A",
+    "category": "work",
+    "keywords": [
+      "tasks"
+    ],
+    "website": "asana.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "hex": "F24E1E",
+    "category": "work",
+    "keywords": [
+      "design"
+    ],
+    "website": "figma.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "canva",
+    "name": "Canva",
+    "hex": "00C4CC",
+    "category": "work",
+    "keywords": [
+      "design"
+    ],
+    "website": "canva.com",
+    "hasGlyph": false,
+    "fullColor": false
+  },
+  {
+    "id": "airtable",
+    "name": "Airtable",
+    "hex": "18BFFF",
+    "category": "work",
+    "keywords": [
+      "database"
+    ],
+    "website": "airtable.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "jira",
+    "name": "Jira",
+    "hex": "0052CC",
+    "category": "work",
+    "keywords": [
+      "atlassian",
+      "tickets"
+    ],
+    "website": "atlassian.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "evernote",
+    "name": "Evernote",
+    "hex": "00A82D",
+    "category": "work",
+    "keywords": [
+      "notes"
+    ],
+    "website": "evernote.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "todoist",
+    "name": "Todoist",
+    "hex": "E44332",
+    "category": "work",
+    "keywords": [
+      "tasks"
+    ],
+    "website": "todoist.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "linear",
+    "name": "Linear",
+    "hex": "5E6AD2",
+    "category": "work",
+    "keywords": [
+      "tasks",
+      "issues"
+    ],
+    "website": "linear.app",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "hex": "181717",
+    "category": "developer",
+    "keywords": [
+      "git",
+      "code"
+    ],
+    "website": "github.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "gitlab",
+    "name": "GitLab",
+    "hex": "FC6D26",
+    "category": "developer",
+    "keywords": [
+      "git",
+      "code"
+    ],
+    "website": "gitlab.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "bitbucket",
+    "name": "Bitbucket",
+    "hex": "0052CC",
+    "category": "developer",
+    "keywords": [
+      "git",
+      "code"
+    ],
+    "website": "bitbucket.org",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "stackoverflow",
+    "name": "Stack Overflow",
+    "hex": "F58025",
+    "category": "developer",
+    "keywords": [
+      "code"
+    ],
+    "website": "stackoverflow.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "hex": "000000",
+    "category": "developer",
+    "keywords": [
+      "hosting"
+    ],
+    "website": "vercel.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "hex": "F38020",
+    "category": "developer",
+    "keywords": [
+      "dns",
+      "hosting"
+    ],
+    "website": "cloudflare.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "hex": "2496ED",
+    "category": "developer",
+    "keywords": [
+      "containers"
+    ],
+    "website": "hub.docker.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "npm",
+    "name": "npm",
+    "hex": "CB3837",
+    "category": "developer",
+    "keywords": [
+      "packages"
+    ],
+    "website": "npmjs.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "digitalocean",
+    "name": "DigitalOcean",
+    "hex": "0080FF",
+    "category": "developer",
+    "keywords": [
+      "hosting"
+    ],
+    "website": "digitalocean.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "steam",
+    "name": "Steam",
+    "hex": "000000",
+    "category": "gaming",
+    "keywords": [
+      "valve"
+    ],
+    "website": "store.steampowered.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "epicgames",
+    "name": "Epic Games",
+    "hex": "313131",
+    "category": "gaming",
+    "keywords": [
+      "fortnite"
+    ],
+    "website": "epicgames.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "playstation",
+    "name": "PlayStation",
+    "hex": "0070D1",
+    "category": "gaming",
+    "keywords": [
+      "sony",
+      "psn"
+    ],
+    "website": "playstation.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "riotgames",
+    "name": "Riot Games",
+    "hex": "EB0029",
+    "category": "gaming",
+    "keywords": [
+      "league",
+      "valorant"
+    ],
+    "website": "riotgames.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "roblox",
+    "name": "Roblox",
+    "hex": "000000",
+    "category": "gaming",
+    "keywords": [],
+    "website": "roblox.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "ea",
+    "name": "EA",
+    "hex": "000000",
+    "category": "gaming",
+    "keywords": [
+      "electronic arts"
+    ],
+    "website": "ea.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "ubisoft",
+    "name": "Ubisoft",
+    "hex": "000000",
+    "category": "gaming",
+    "keywords": [],
+    "website": "ubisoft.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "battledotnet",
+    "name": "Battle.net",
+    "hex": "4381C3",
+    "category": "gaming",
+    "keywords": [
+      "blizzard"
+    ],
+    "website": "battle.net",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "hex": "000000",
+    "category": "other",
+    "keywords": [
+      "apple id"
+    ],
+    "website": "account.apple.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "uber",
+    "name": "Uber",
+    "hex": "000000",
+    "category": "other",
+    "keywords": [
+      "rides"
+    ],
+    "website": "uber.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "airbnb",
+    "name": "Airbnb",
+    "hex": "FF5A5F",
+    "category": "other",
+    "keywords": [
+      "travel"
+    ],
+    "website": "airbnb.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "bookingdotcom",
+    "name": "Booking.com",
+    "hex": "003A9A",
+    "category": "other",
+    "keywords": [
+      "travel",
+      "hotels"
+    ],
+    "website": "booking.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "grab",
+    "name": "Grab",
+    "hex": "00B14F",
+    "category": "other",
+    "keywords": [
+      "rides",
+      "food"
+    ],
+    "website": "grab.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "duolingo",
+    "name": "Duolingo",
+    "hex": "58CC02",
+    "category": "other",
+    "keywords": [
+      "learning"
+    ],
+    "website": "duolingo.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "medium",
+    "name": "Medium",
+    "hex": "000000",
+    "category": "other",
+    "keywords": [
+      "blog"
+    ],
+    "website": "medium.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "wordpress",
+    "name": "WordPress",
+    "hex": "21759B",
+    "category": "other",
+    "keywords": [
+      "blog"
+    ],
+    "website": "wordpress.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "tinder",
+    "name": "Tinder",
+    "hex": "FF6B6B",
+    "category": "other",
+    "keywords": [
+      "dating"
+    ],
+    "website": "tinder.com",
+    "hasGlyph": true,
+    "fullColor": false
+  },
+  {
+    "id": "strava",
+    "name": "Strava",
+    "hex": "FC4C02",
+    "category": "other",
+    "keywords": [
+      "fitness"
+    ],
+    "website": "strava.com",
+    "hasGlyph": true,
+    "fullColor": false
+  }
+]

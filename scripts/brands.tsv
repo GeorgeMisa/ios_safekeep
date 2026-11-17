@@ -1,0 +1,98 @@
+slug	category	website	keywords	fallback
+gmail	email	mail.google.com	google,email,mail	
+protonmail	email	proton.me	proton,email,mail	
+icloud	email	icloud.com	apple,email,mail	
+yahoo	email	mail.yahoo.com	email,mail	Yahoo|6001D2
+zoho	email	zoho.com	email,mail	
+facebook	social	facebook.com	meta,fb	
+instagram	social	instagram.com	meta,ig	
+x	social	x.com	twitter	
+threads	social	threads.net	meta	
+tiktok	social	tiktok.com	bytedance	
+snapchat	social	snapchat.com	snap	
+reddit	social	reddit.com		
+pinterest	social	pinterest.com		
+discord	social	discord.com	chat	
+telegram	social	telegram.org	chat,messaging	
+whatsapp	social	whatsapp.com	meta,chat,messaging	
+signal	social	signal.org	chat,messaging	
+messenger	social	messenger.com	meta,chat	
+bluesky	social	bsky.app		
+mastodon	social	mastodon.social		
+tumblr	social	tumblr.com		
+viber	social	viber.com	chat,messaging	
+line	social	line.me	chat,messaging	
+netflix	entertainment	netflix.com	streaming,movies,tv	
+youtube	entertainment	youtube.com	google,video	
+spotify	entertainment	spotify.com	music	
+twitch	entertainment	twitch.tv	streaming	
+hbo	entertainment	max.com	max,streaming	
+primevideo	entertainment	primevideo.com	amazon,streaming	Prime Video|00A8E1
+applemusic	entertainment	music.apple.com	music	
+appletv	entertainment	tv.apple.com	streaming	
+soundcloud	entertainment	soundcloud.com	music	
+crunchyroll	entertainment	crunchyroll.com	anime,streaming	
+hulu	entertainment	hulu.com	streaming	Hulu|1CE783
+paramountplus	entertainment	paramountplus.com	streaming	
+paypal	finance	paypal.com	payments	
+stripe	finance	stripe.com	payments	
+wise	finance	wise.com	transfer	
+revolut	finance	revolut.com	bank	
+venmo	finance	venmo.com	payments	
+cashapp	finance	cash.app	payments	
+visa	finance	visa.com	card	
+mastercard	finance	mastercard.com	card	
+americanexpress	finance	americanexpress.com	amex,card	
+coinbase	finance	coinbase.com	crypto	
+gcash	finance	gcash.com	wallet,payments	GCash|007DFE
+amazon	shopping	amazon.com	shop	Amazon|FF9900
+ebay	shopping	ebay.com	shop	
+etsy	shopping	etsy.com	shop	
+shopify	shopping	shopify.com	shop,store	
+shopee	shopping	shopee.com	shop	
+lazada	shopping	lazada.com	shop	Lazada|0F146D
+aliexpress	shopping	aliexpress.com	shop	
+ikea	shopping	ikea.com	shop,furniture	
+temu	shopping	temu.com	shop	Temu|FB7701
+slack	work	slack.com	chat	Slack|4A154B
+notion	work	notion.so	notes,docs	
+zoom	work	zoom.us	video,meetings	
+google	work	accounts.google.com	gmail,drive	
+googledrive	work	drive.google.com	files,storage	
+dropbox	work	dropbox.com	files,storage	
+trello	work	trello.com	tasks	
+asana	work	asana.com	tasks	
+figma	work	figma.com	design	
+canva	work	canva.com	design	Canva|00C4CC
+airtable	work	airtable.com	database	
+jira	work	atlassian.com	atlassian,tickets	
+evernote	work	evernote.com	notes	
+todoist	work	todoist.com	tasks	
+linear	work	linear.app	tasks,issues	
+github	developer	github.com	git,code	
+gitlab	developer	gitlab.com	git,code	
+bitbucket	developer	bitbucket.org	git,code	
+stackoverflow	developer	stackoverflow.com	code	
+vercel	developer	vercel.com	hosting	
+cloudflare	developer	cloudflare.com	dns,hosting	
+docker	developer	hub.docker.com	containers	
+npm	developer	npmjs.com	packages	
+digitalocean	developer	digitalocean.com	hosting	
+steam	gaming	store.steampowered.com	valve	
+epicgames	gaming	epicgames.com	fortnite	
+playstation	gaming	playstation.com	sony,psn	
+riotgames	gaming	riotgames.com	league,valorant	
+roblox	gaming	roblox.com		
+ea	gaming	ea.com	electronic arts	
+ubisoft	gaming	ubisoft.com		
+battledotnet	gaming	battle.net	blizzard	
+apple	other	account.apple.com	apple id	
+uber	other	uber.com	rides	
+airbnb	other	airbnb.com	travel	
+bookingdotcom	other	booking.com	travel,hotels	
+grab	other	grab.com	rides,food	
+duolingo	other	duolingo.com	learning	
+medium	other	medium.com	blog	
+wordpress	other	wordpress.com	blog	
+tinder	other	tinder.com	dating	
+strava	other	strava.com	fitness	
