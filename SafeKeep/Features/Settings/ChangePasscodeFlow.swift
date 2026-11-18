@@ -17,9 +17,11 @@ struct ChangePasscodeFlow: View {
     var body: some View {
         ZStack { stepView }
             .animation(.snappy, value: step)
-            .sensoryFeedback(.success, trigger: step) { _, new in new == .done }
+            .sensoryFeedback(.success, trigger: isDone)
             .preferredColorScheme(.dark)
     }
+
+    private var isDone: Bool { step == .done }
 
     // MARK: - Steps
 

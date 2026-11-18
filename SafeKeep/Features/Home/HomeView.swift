@@ -18,25 +18,36 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            accountList
-                .navigationTitle("SafeKeep")
-                .toolbarTitleDisplayMode(.inlineLarge)
-                .navigationDestination(for: Account.ID.self) { id in
-                    AccountDetailView(accountID: id)
-                }
+            titledList
                 .toolbar { lockButton }
-                .sheet(isPresented: $isAdding) {
-                    AccountEditorView()
-                }
-                .onChange(of: session.payload.accounts.count) { old, new in
-                    celebratesFirstSave = old == 0 && new == 1
-                }
+                .sheet(isPresented: $isAdding) { AccountEditorView() }
+                .onChange(of: accountCount, updateCelebration)
         }
+    }
+
+    // MARK: - Navigation
+
+    private var titledList: some View {
+        accountList
+            .navigationTitle("SafeKeep")
+            .toolbarTitleDisplayMode(.inlineLarge)
+            .navigationDestination(for: Account.ID.self, destination: accountDetail)
+    }
+
+    private var accountCount: Int { session.payload.accounts.count }
+
+    private func accountDetail(for id: Account.ID) -> AccountDetailView {
+        AccountDetailView(accountID: id)
+    }
+
+    private func updateCelebration(from oldCount: Int, to newCount: Int) {
+        celebratesFirstSave = oldCount == 0 && newCount == 1
     }
 
     // MARK: - Sections
 
-    // Kept as small typed pieces so the Swift type checker stays fast on slower Macs.
+    // Kept as small typed pieces: long modifier chains with inline closures can exceed
+    // the type checker's limits on some Xcode versions.
     private var accountList: some View {
         List {
             mascotSection

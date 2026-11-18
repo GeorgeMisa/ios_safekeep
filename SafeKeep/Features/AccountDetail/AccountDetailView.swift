@@ -9,6 +9,7 @@ struct AccountDetailView: View {
     @State private var isEditing = false
     @State private var isConfirmingDelete = false
     @State private var toast: String?
+    @State private var toastCount = 0
     @State private var errorMessage: String?
 
     var body: some View {
@@ -27,7 +28,7 @@ struct AccountDetailView: View {
             }
         }
         .animation(.snappy, value: toast)
-        .sensoryFeedback(.success, trigger: toast) { _, new in new != nil }
+        .sensoryFeedback(.success, trigger: toastCount)
         .alert("Couldn't Delete", isPresented: .constant(errorMessage != nil)) {
             Button("OK") { errorMessage = nil }
         } message: {
@@ -167,6 +168,7 @@ struct AccountDetailView: View {
 
     private func show(_ message: String) {
         toast = message
+        toastCount += 1
         Task {
             try? await Task.sleep(for: .seconds(2))
             if toast == message { toast = nil }
