@@ -40,82 +40,9 @@ struct AccountDetailView: View {
 
     private func content(_ account: Account) -> some View {
         List {
-            Section {
-                VStack(spacing: Spacing.md) {
-                    BrandIconView(brandID: account.brandID, name: account.serviceName, category: account.category, size: 72)
-                    VStack(spacing: Spacing.xs) {
-                        Text(account.serviceName)
-                            .font(.title2.bold())
-                            .multilineTextAlignment(.center)
-                        HStack(spacing: Spacing.xs) {
-                            Image(systemName: account.category.symbol)
-                            Text(account.category.title)
-                        }
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, Spacing.sm)
-            }
-            .listRowBackground(Color.clear)
-
-            Section {
-                if !account.username.isEmpty {
-                    DetailFieldRow(label: "Username") {
-                        Text(account.username)
-                            .textSelection(.enabled)
-                    } actions: {
-                        copyButton(account.username, label: "Username copied", accessibility: "Copy username")
-                    }
-                }
-
-                DetailFieldRow(label: "Password") {
-                    Text(isRevealed ? account.password : String(repeating: "•", count: 10))
-                        .font(isRevealed ? .body.monospaced() : .body)
-                        .privacySensitive()
-                        .contentTransition(.opacity)
-                } actions: {
-                    Button {
-                        withAnimation(.snappy) { isRevealed.toggle() }
-                    } label: {
-                        Image(systemName: isRevealed ? "eye.slash" : "eye")
-                            .frame(width: 44, height: 44)
-                    }
-                    .accessibilityLabel(isRevealed ? "Hide password" : "Show password")
-                    copyButton(account.password, label: "Password copied · clears in 30s", accessibility: "Copy password")
-                }
-
-                if !account.website.isEmpty {
-                    DetailFieldRow(label: "Website") {
-                        Text(account.website)
-                            .lineLimit(1)
-                    } actions: {
-                        if let url = account.websiteURL {
-                            Link(destination: url) {
-                                Image(systemName: "arrow.up.right.square")
-                                    .frame(width: 44, height: 44)
-                            }
-                            .accessibilityLabel("Open website")
-                        }
-                    }
-                }
-
-                if !account.notes.isEmpty {
-                    DetailFieldRow(label: "Notes") {
-                        Text(account.notes)
-                    } actions: {
-                        EmptyView()
-                    }
-                }
-            }
-
-            Section {
-                Button("Delete Account", role: .destructive) { isConfirmingDelete = true }
-                    .frame(maxWidth: .infinity)
-            } footer: {
-                Text("Last updated \(account.updatedAt.formatted(.relative(presentation: .named)))")
-            }
+            headerSection(account)
+            fieldsSection(account)
+            deleteSection(account)
         }
         .listStyle(.insetGrouped)
         .buttonStyle(.borderless)
@@ -127,14 +54,102 @@ struct AccountDetailView: View {
         .sheet(isPresented: $isEditing) {
             AccountEditorView(existing: account)
         }
-        .confirmationDialog(
-            "Delete \(account.serviceName)?",
-            isPresented: $isConfirmingDelete,
-            titleVisibility: .visible
-        ) {
+        .confirmationDialog("Delete \(account.serviceName)?", isPresented: $isConfirmingDelete, titleVisibility: .visible) {
             Button("Delete Account", role: .destructive) { delete(account) }
         } message: {
             Text("This removes the saved login from SafeKeep. It can't be undone.")
+        }
+    }
+
+    private func headerSection(_ account: Account) -> some View {
+        Section {
+            VStack(spacing: Spacing.md) {
+                BrandIconView(brandID: account.brandID, name: account.serviceName, category: account.category, size: 72)
+                VStack(spacing: Spacing.xs) {
+                    Text(account.serviceName)
+                        .font(.title2.bold())
+                        .multilineTextAlignment(.center)
+                    HStack(spacing: Spacing.xs) {
+                        Image(systemName: account.category.symbol)
+                        Text(account.category.title)
+                    }
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, Spacing.sm)
+        }
+        .listRowBackground(Color.clear)
+    }
+
+    private func fieldsSection(_ account: Account) -> some View {
+        Section {
+            if !account.username.isEmpty {
+                usernameRow(account)
+            }
+            passwordRow(account)
+            if !account.website.isEmpty {
+                websiteRow(account)
+            }
+            if !account.notes.isEmpty {
+                DetailFieldRow(label: "Notes") {
+                    Text(account.notes)
+                } actions: {
+                    EmptyView()
+                }
+            }
+        }
+    }
+
+    private func usernameRow(_ account: Account) -> some View {
+        DetailFieldRow(label: "Username") {
+            Text(account.username)
+                .textSelection(.enabled)
+        } actions: {
+            copyButton(account.username, label: "Username copied", accessibility: "Copy username")
+        }
+    }
+
+    private func passwordRow(_ account: Account) -> some View {
+        DetailFieldRow(label: "Password") {
+            Text(isRevealed ? account.password : String(repeating: "•", count: 10))
+                .font(isRevealed ? .body.monospaced() : .body)
+                .privacySensitive()
+                .contentTransition(.opacity)
+        } actions: {
+            Button {
+                withAnimation(.snappy) { isRevealed.toggle() }
+            } label: {
+                Image(systemName: isRevealed ? "eye.slash" : "eye")
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel(isRevealed ? "Hide password" : "Show password")
+            copyButton(account.password, label: "Password copied · clears in 30s", accessibility: "Copy password")
+        }
+    }
+
+    private func websiteRow(_ account: Account) -> some View {
+        DetailFieldRow(label: "Website") {
+            Text(account.website)
+                .lineLimit(1)
+        } actions: {
+            if let url = account.websiteURL {
+                Link(destination: url) {
+                    Image(systemName: "arrow.up.right.square")
+                        .frame(width: 44, height: 44)
+                }
+                .accessibilityLabel("Open website")
+            }
+        }
+    }
+
+    private func deleteSection(_ account: Account) -> some View {
+        Section {
+            Button("Delete Account", role: .destructive) { isConfirmingDelete = true }
+                .frame(maxWidth: .infinity)
+        } footer: {
+            Text("Last updated \(account.updatedAt.formatted(.relative(presentation: .named)))")
         }
     }
 

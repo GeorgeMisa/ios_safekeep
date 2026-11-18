@@ -15,56 +15,72 @@ struct ChangePasscodeFlow: View {
     @State private var now = Date.now
 
     var body: some View {
-        ZStack {
-            switch step {
-            case .verify:
-                let remaining = session.lockoutRemaining(at: now)
-                PasscodeEntryView(
-                    heading: "Enter your current passcode",
-                    pose: remaining > 0 ? .sleepy : .standard,
-                    detail: remaining > 0 ? LockoutText.message(remaining: remaining) : detail,
-                    isLocked: remaining > 0,
-                    onCancel: { dismiss() }
-                ) { code in
-                    await verify(code)
-                }
-            case .create:
-                PasscodeEntryView(
-                    heading: "Enter a new 6-digit passcode",
-                    pose: .key,
-                    detail: detail,
-                    onCancel: { dismiss() }
-                ) { code in
-                    guard !PasscodeRules.isTooSimple(code) else {
-                        detail = "Avoid repeated or sequential digits."
-                        return false
-                    }
-                    detail = nil
-                    step = .confirm(code)
-                    return true
-                }
-                .transition(.move(edge: .trailing))
-            case .confirm(let first):
-                PasscodeEntryView(
-                    heading: "Confirm your new passcode",
-                    pose: .key,
-                    detail: detail,
-                    onCancel: { dismiss() }
-                ) { code in
-                    await confirm(code, matching: first)
-                }
-                .transition(.move(edge: .trailing))
-            case .done:
-                PrivacyShield(message: "Passcode changed", pose: .celebrating)
-                    .task {
-                        try? await Task.sleep(for: .seconds(1))
-                        dismiss()
-                    }
-            }
+        ZStack { stepView }
+            .animation(.snappy, value: step)
+            .sensoryFeedback(.success, trigger: step) { _, new in new == .done }
+            .preferredColorScheme(.dark)
+    }
+
+    // MARK: - Steps
+
+    @ViewBuilder
+    private var stepView: some View {
+        switch step {
+        case .verify: verifyStep
+        case .create: createStep.transition(.move(edge: .trailing))
+        case .confirm(let first): confirmStep(first).transition(.move(edge: .trailing))
+        case .done: doneStep
         }
-        .animation(.snappy, value: step)
-        .sensoryFeedback(.success, trigger: step) { _, new in new == .done }
-        .preferredColorScheme(.dark)
+    }
+
+    private var verifyStep: some View {
+        let remaining = session.lockoutRemaining(at: now)
+        return PasscodeEntryView(
+            heading: "Enter your current passcode",
+            pose: remaining > 0 ? .sleepy : .standard,
+            detail: remaining > 0 ? LockoutText.message(remaining: remaining) : detail,
+            isLocked: remaining > 0,
+            onCancel: { dismiss() },
+            onComplete: verify
+        )
+    }
+
+    private var createStep: some View {
+        PasscodeEntryView(
+            heading: "Enter a new 6-digit passcode",
+            pose: .key,
+            detail: detail,
+            onCancel: { dismiss() },
+            onComplete: chooseNew
+        )
+    }
+
+    private func confirmStep(_ first: String) -> some View {
+        PasscodeEntryView(
+            heading: "Confirm your new passcode",
+            pose: .key,
+            detail: detail,
+            onCancel: { dismiss() },
+            onComplete: { code in await confirm(code, matching: first) }
+        )
+    }
+
+    private var doneStep: some View {
+        PrivacyShield(message: "Passcode changed", pose: .celebrating)
+            .task {
+                try? await Task.sleep(for: .seconds(1))
+                dismiss()
+            }
+    }
+
+    private func chooseNew(_ code: String) async -> Bool {
+        guard !PasscodeRules.isTooSimple(code) else {
+            detail = "Avoid repeated or sequential digits."
+            return false
+        }
+        detail = nil
+        step = .confirm(code)
+        return true
     }
 
     private func verify(_ code: String) async -> Bool {

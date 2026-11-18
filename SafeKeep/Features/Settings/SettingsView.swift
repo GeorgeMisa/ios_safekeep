@@ -13,87 +13,107 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    NavigationLink {
-                        DisplayNameView()
-                    } label: {
-                        ProfileRow(name: session.payload.displayName, count: session.payload.accounts.count)
-                    }
+            settingsList
+                .navigationTitle("Settings")
+                .toolbarTitleDisplayMode(.inlineLarge)
+                .fullScreenCover(isPresented: $isChangingPasscode) {
+                    ChangePasscodeFlow()
                 }
+                .fullScreenCover(isPresented: $isShowingTour) {
+                    WelcomeTourView(mode: .replay) { isShowingTour = false }
+                }
+                .modifier(eraseFlow)
+                .alert("Face ID", isPresented: .constant(errorMessage != nil)) {
+                    Button("OK") { errorMessage = nil }
+                } message: {
+                    Text(errorMessage ?? "")
+                }
+        }
+    }
 
-                securitySection
+    // MARK: - Sections
 
-                Section("Preferences") {
-                    Picker(selection: $appearance) {
-                        ForEach(AppearanceOption.allCases) { Text($0.title).tag($0) }
-                    } label: {
-                        SettingsRowLabel(title: "Appearance", symbol: "circle.lefthalf.filled", color: .indigo)
-                    }
-                }
+    private var settingsList: some View {
+        List {
+            profileSection
+            securitySection
+            preferencesSection
+            dataSection
+            supportSection
+            eraseSection
+        }
+        .listStyle(.insetGrouped)
+        .contentMargins(.top, Spacing.sm, for: .scrollContent)
+    }
 
-                Section("Data") {
-                    NavigationLink {
-                        BackupView()
-                    } label: {
-                        SettingsRowLabel(title: "Backup & Restore", symbol: "arrow.up.arrow.down", color: .teal)
-                    }
-                }
-
-                Section("Support") {
-                    Button {
-                        isShowingTour = true
-                    } label: {
-                        SettingsRowLabel(title: "Welcome Tour", symbol: "sparkles", color: .purple, showsChevron: true)
-                    }
-                    .tint(.primary)
-                    NavigationLink {
-                        HelpView()
-                    } label: {
-                        SettingsRowLabel(title: "Help & Support", symbol: "questionmark", color: .orange)
-                    }
-                    NavigationLink {
-                        AboutView()
-                    } label: {
-                        SettingsRowLabel(title: "About", symbol: "info", color: .gray)
-                    }
-                }
-
-                Section {
-                    Button("Erase Vault", role: .destructive) { isConfirmingErase = true }
-                        .frame(maxWidth: .infinity)
-                } footer: {
-                    Text("Deletes every saved account and your passcode from this iPhone. It can't be undone.")
-                }
-            }
-            .listStyle(.insetGrouped)
-            .contentMargins(.top, Spacing.sm, for: .scrollContent)
-            .navigationTitle("Settings")
-            .toolbarTitleDisplayMode(.inlineLarge)
-            .fullScreenCover(isPresented: $isChangingPasscode) {
-                ChangePasscodeFlow()
-            }
-            .fullScreenCover(isPresented: $isShowingTour) {
-                WelcomeTourView(mode: .replay) { isShowingTour = false }
-            }
-            .confirmationDialog("Erase everything in SafeKeep?", isPresented: $isConfirmingErase, titleVisibility: .visible) {
-                Button("Erase Vault", role: .destructive) { isVerifyingErase = true }
-            } message: {
-                Text("All \(session.payload.accounts.count) saved accounts will be permanently deleted. Export a backup first if you might need them.")
-            }
-            .fullScreenCover(isPresented: $isVerifyingErase, onDismiss: {
-                if eraseVerified { session.eraseVault() }
-            }) {
-                PasscodeVerifyView(heading: "Enter your passcode to erase the vault", pose: .concerned) {
-                    eraseVerified = true
-                }
-            }
-            .alert("Face ID", isPresented: .constant(errorMessage != nil)) {
-                Button("OK") { errorMessage = nil }
-            } message: {
-                Text(errorMessage ?? "")
+    private var profileSection: some View {
+        Section {
+            NavigationLink {
+                DisplayNameView()
+            } label: {
+                ProfileRow(name: session.payload.displayName, count: session.payload.accounts.count)
             }
         }
+    }
+
+    private var preferencesSection: some View {
+        Section("Preferences") {
+            Picker(selection: $appearance) {
+                ForEach(AppearanceOption.allCases) { Text($0.title).tag($0) }
+            } label: {
+                SettingsRowLabel(title: "Appearance", symbol: "circle.lefthalf.filled", color: .indigo)
+            }
+        }
+    }
+
+    private var dataSection: some View {
+        Section("Data") {
+            NavigationLink {
+                BackupView()
+            } label: {
+                SettingsRowLabel(title: "Backup & Restore", symbol: "arrow.up.arrow.down", color: .teal)
+            }
+        }
+    }
+
+    private var supportSection: some View {
+        Section("Support") {
+            Button {
+                isShowingTour = true
+            } label: {
+                SettingsRowLabel(title: "Welcome Tour", symbol: "sparkles", color: .purple, showsChevron: true)
+            }
+            .tint(.primary)
+            NavigationLink {
+                HelpView()
+            } label: {
+                SettingsRowLabel(title: "Help & Support", symbol: "questionmark", color: .orange)
+            }
+            NavigationLink {
+                AboutView()
+            } label: {
+                SettingsRowLabel(title: "About", symbol: "info", color: .gray)
+            }
+        }
+    }
+
+    private var eraseSection: some View {
+        Section {
+            Button("Erase Vault", role: .destructive) { isConfirmingErase = true }
+                .frame(maxWidth: .infinity)
+        } footer: {
+            Text("Deletes every saved account and your passcode from this iPhone. It can't be undone.")
+        }
+    }
+
+    private var eraseFlow: EraseFlow {
+        EraseFlow(
+            isConfirming: $isConfirmingErase,
+            isVerifying: $isVerifyingErase,
+            verified: $eraseVerified,
+            accountCount: session.payload.accounts.count,
+            onErase: { session.eraseVault() }
+        )
     }
 
     // MARK: - Security
@@ -175,5 +195,29 @@ private struct ProfileRow: View {
             }
         }
         .padding(.vertical, Spacing.xs)
+    }
+}
+
+private struct EraseFlow: ViewModifier {
+    @Binding var isConfirming: Bool
+    @Binding var isVerifying: Bool
+    @Binding var verified: Bool
+    let accountCount: Int
+    let onErase: () -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .confirmationDialog("Erase everything in SafeKeep?", isPresented: $isConfirming, titleVisibility: .visible) {
+                Button("Erase Vault", role: .destructive) { isVerifying = true }
+            } message: {
+                Text("All \(accountCount) saved accounts will be permanently deleted. Export a backup first if you might need them.")
+            }
+            .fullScreenCover(isPresented: $isVerifying, onDismiss: {
+                if verified { onErase() }
+            }) {
+                PasscodeVerifyView(heading: "Enter your passcode to erase the vault", pose: .concerned) {
+                    verified = true
+                }
+            }
     }
 }

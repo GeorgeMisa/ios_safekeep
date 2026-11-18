@@ -36,73 +36,90 @@ struct AccountsView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                if !session.accounts.isEmpty {
-                    Section {
-                        AccountsFilterBar(
-                            selection: $filter,
-                            categories: usedCategories,
-                            attentionCount: flaggedIDs.count
-                        )
-                    }
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
+            accountList
+                .navigationTitle("Accounts")
+                .toolbarTitleDisplayMode(.inlineLarge)
+                .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search accounts")
+                .navigationDestination(for: Account.ID.self) { id in
+                    AccountDetailView(accountID: id)
                 }
+                .sheet(isPresented: $isAdding) {
+                    AccountEditorView()
+                }
+                .onChange(of: usedCategories) { _, used in
+                    if case .category(let category) = filter, !used.contains(category) { filter = .all }
+                }
+        }
+    }
 
-                ForEach(groups, id: \.category) { group in
-                    Section {
-                        ForEach(group.accounts) { account in
-                            NavigationLink(value: account.id) {
-                                AccountRow(account: account)
-                            }
-                        }
-                    } header: {
-                        Label(group.category.title, systemImage: group.category.symbol)
-                    }
+    // MARK: - Sections
+
+    private var accountList: some View {
+        List {
+            if !session.accounts.isEmpty {
+                filterSection
+            }
+            ForEach(groups, id: \.category) { group in
+                categorySection(group.category, accounts: group.accounts)
+            }
+        }
+        .listStyle(.insetGrouped)
+        .listSectionSpacing(Spacing.lg)
+        .contentMargins(.top, Spacing.sm, for: .scrollContent)
+        .overlay { emptyState }
+        .overlay(alignment: .bottomTrailing) { floatingAddButton }
+    }
+
+    private var filterSection: some View {
+        Section {
+            AccountsFilterBar(selection: $filter, categories: usedCategories, attentionCount: flaggedIDs.count)
+        }
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
+    }
+
+    private func categorySection(_ category: AccountCategory, accounts: [Account]) -> some View {
+        Section {
+            ForEach(accounts) { account in
+                NavigationLink(value: account.id) {
+                    AccountRow(account: account)
                 }
             }
-            .listStyle(.insetGrouped)
-            .listSectionSpacing(Spacing.lg)
-            .contentMargins(.top, Spacing.sm, for: .scrollContent)
-            .overlay {
-                if session.accounts.isEmpty {
-                    MascotEmptyState(
-                        pose: .key,
-                        title: "Nothing stashed yet",
-                        message: "Accounts you save show up here, grouped by the icon you pick."
-                    ) {
-                        Button("Add Account") { isAdding = true }
-                            .buttonStyle(.borderedProminent)
-                    }
-                } else if groups.isEmpty {
-                    MascotEmptyState(
-                        pose: filter == .needsAttention && query.isEmpty ? .proud : .searching,
-                        title: filter == .needsAttention && query.isEmpty ? "Nothing to fix" : "No matches",
-                        message: filter == .needsAttention && query.isEmpty
-                            ? "Every password is strong and unique. Nice work!"
-                            : "Try a different name, username or website, or pick another filter."
-                    )
-                }
+        } header: {
+            Label(category.title, systemImage: category.symbol)
+        }
+    }
+
+    private var isAllFixed: Bool { filter == .needsAttention && query.isEmpty }
+
+    @ViewBuilder
+    private var emptyState: some View {
+        if session.accounts.isEmpty {
+            MascotEmptyState(
+                pose: .key,
+                title: "Nothing stashed yet",
+                message: "Accounts you save show up here, grouped by the icon you pick."
+            ) {
+                Button("Add Account") { isAdding = true }
+                    .buttonStyle(.borderedProminent)
             }
-            .overlay(alignment: .bottomTrailing) {
-                if !session.accounts.isEmpty {
-                    AddAccountButton { isAdding = true }
-                        .padding(.trailing, Spacing.lg)
-                        .padding(.bottom, Spacing.lg)
-                }
-            }
-            .navigationTitle("Accounts")
-            .toolbarTitleDisplayMode(.inlineLarge)
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search accounts")
-            .navigationDestination(for: Account.ID.self) { id in
-                AccountDetailView(accountID: id)
-            }
-            .sheet(isPresented: $isAdding) {
-                AccountEditorView()
-            }
-            .onChange(of: usedCategories) { _, used in
-                if case .category(let category) = filter, !used.contains(category) { filter = .all }
-            }
+        } else if groups.isEmpty {
+            MascotEmptyState(
+                pose: isAllFixed ? .proud : .searching,
+                title: isAllFixed ? "Nothing to fix" : "No matches",
+                message: isAllFixed
+                    ? "Every password is strong and unique. Nice work!"
+                    : "Try a different name, username or website, or pick another filter."
+            )
+        }
+    }
+
+    @ViewBuilder
+    private var floatingAddButton: some View {
+        if !session.accounts.isEmpty {
+            AddAccountButton { isAdding = true }
+                .padding(.trailing, Spacing.lg)
+                .padding(.bottom, Spacing.lg)
         }
     }
 }

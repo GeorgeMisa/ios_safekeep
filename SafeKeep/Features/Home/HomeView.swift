@@ -18,70 +18,95 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    MascotHeader(pose: mood.pose, message: mood.message)
+            accountList
+                .navigationTitle("SafeKeep")
+                .toolbarTitleDisplayMode(.inlineLarge)
+                .navigationDestination(for: Account.ID.self) { id in
+                    AccountDetailView(accountID: id)
                 }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-                .listRowSeparator(.hidden)
+                .toolbar { lockButton }
+                .sheet(isPresented: $isAdding) {
+                    AccountEditorView()
+                }
+                .onChange(of: session.payload.accounts.count) { old, new in
+                    celebratesFirstSave = old == 0 && new == 1
+                }
+        }
+    }
 
-                if session.accounts.isEmpty {
-                    Section {
-                        Button {
-                            isAdding = true
-                        } label: {
-                            Label("Add Your First Account", systemImage: "plus.circle.fill")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity, minHeight: 34)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                    }
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-                } else {
-                    Section {
-                        ForEach(session.accounts) { account in
-                            NavigationLink(value: account.id) {
-                                AccountRow(account: account)
-                            }
-                        }
-                    } header: {
-                        HStack {
-                            Text("Your Accounts")
-                            Spacer()
-                            Text("\(session.accounts.count)")
-                                .monospacedDigit()
-                        }
-                    }
+    // MARK: - Sections
+
+    // Kept as small typed pieces so the Swift type checker stays fast on slower Macs.
+    private var accountList: some View {
+        List {
+            mascotSection
+            if session.accounts.isEmpty {
+                firstAccountSection
+            } else {
+                accountsSection
+            }
+        }
+        .listStyle(.insetGrouped)
+        .listSectionSpacing(Spacing.lg)
+        .contentMargins(.top, Spacing.sm, for: .scrollContent)
+        .overlay(alignment: .bottomTrailing) { floatingAddButton }
+    }
+
+    private var mascotSection: some View {
+        Section {
+            MascotHeader(pose: mood.pose, message: mood.message)
+        }
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
+        .listRowSeparator(.hidden)
+    }
+
+    private var firstAccountSection: some View {
+        Section {
+            Button {
+                isAdding = true
+            } label: {
+                Label("Add Your First Account", systemImage: "plus.circle.fill")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity, minHeight: 34)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+        }
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
+    }
+
+    private var accountsSection: some View {
+        Section {
+            ForEach(session.accounts) { account in
+                NavigationLink(value: account.id) {
+                    AccountRow(account: account)
                 }
             }
-            .listStyle(.insetGrouped)
-            .listSectionSpacing(Spacing.lg)
-            .contentMargins(.top, Spacing.sm, for: .scrollContent)
-            .overlay(alignment: .bottomTrailing) {
-                if !session.accounts.isEmpty {
-                    AddAccountButton { isAdding = true }
-                        .padding(.trailing, Spacing.lg)
-                        .padding(.bottom, Spacing.lg)
-                }
+        } header: {
+            HStack {
+                Text("Your Accounts")
+                Spacer()
+                Text(session.accounts.count, format: .number)
+                    .monospacedDigit()
             }
-            .navigationTitle("SafeKeep")
-            .toolbarTitleDisplayMode(.inlineLarge)
-            .navigationDestination(for: Account.ID.self) { id in
-                AccountDetailView(accountID: id)
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Lock SafeKeep", systemImage: "lock.fill") { session.lock(userInitiated: true) }
-                }
-            }
-            .sheet(isPresented: $isAdding) {
-                AccountEditorView()
-            }
-            .onChange(of: session.payload.accounts.count) { old, new in
-                celebratesFirstSave = old == 0 && new == 1
+        }
+    }
+
+    @ViewBuilder
+    private var floatingAddButton: some View {
+        if !session.accounts.isEmpty {
+            AddAccountButton { isAdding = true }
+                .padding(.trailing, Spacing.lg)
+                .padding(.bottom, Spacing.lg)
+        }
+    }
+
+    private var lockButton: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button("Lock SafeKeep", systemImage: "lock.fill") {
+                session.lock(userInitiated: true)
             }
         }
     }
